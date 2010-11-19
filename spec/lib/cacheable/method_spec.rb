@@ -9,9 +9,8 @@ class Faker
     'faker/1'
   end
 
-  def awesomeness
-    p 'called'
-    "so awesome"
+  def awesomeness things
+    "#{things} are so awesome"
   end
 
 end
@@ -30,14 +29,14 @@ describe Cacheable::Method do
   end
 
   describe "#cached_awesomeness" do
-    subject { @faker.cached_awesomeness }
-    it { should == 'so awesome' }
-    it { should == 'so awesome' }
+    subject { @faker.cached_awesomeness('kittens') }
+    it { should == 'kittens are so awesome' }
+    it { should == 'kittens are so awesome' }
   end
 
   describe "#cached_awesomeness!" do
-    subject { @faker.cached_awesomeness! }
-    it { should == 'so awesome' }
+    subject { @faker.cached_awesomeness!('unicorns') }
+    it { should == 'unicorns are so awesome' }
   end
 
 

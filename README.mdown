@@ -30,7 +30,7 @@
     => 'kittens are so awesome'
 
     # force flush and retrieve result and set into the cache
-    @faker.cached_awesomeness('unicorns')!
+    @faker.cached_awesomeness!('unicorns')
     => 'unicorns are so awesome'
 
 

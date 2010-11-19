@@ -1,0 +1,37 @@
+# Cacheable #
+
+  Simple method caching.
+
+## Usage ##
+
+    class Faker
+      include Cacheable::Method
+
+      caches :awesomeness
+
+      def cache_key
+        'faker/1'
+      end
+
+      def awesomeness things
+        "#{thing} are so awesome"
+      end
+
+    end
+
+    Cacheable.cache_store = Memcached.new(['127.0.0.1:11211', '127.0.0.1:11211'])
+    Cacheable.adapter     = Cacheable::MemcachedAdapter
+    Cacheable.cache_store.flush
+
+    @faker = Faker.new
+    
+    # retrieve result and set into the cache
+    @faker.cached_awesomeness('kittens')
+    => 'kittens are so awesome'
+
+    # force flush and retrieve result and set into the cache
+    @faker.cached_awesomeness('unicorns')!
+    => 'unicorns are so awesome'
+
+
+

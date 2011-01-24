@@ -13,6 +13,7 @@ describe Cacheable do
     subject { Cacheable }
     it { should respond_to :get }
     it { should respond_to :set }
+    it { should respond_to :foo }
   end
 
 end
